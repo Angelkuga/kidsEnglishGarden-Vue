@@ -1,0 +1,42 @@
+
+<html>
+    <head>
+        <script src="https://unpkg.com/vue/dist/vue.js"></script>
+        <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <h1>{{msg}}</h1>
+            <router-link to="/home">Go to Home</router-link>
+            <router-link to="/teacher">Go to Teacher</router-link>
+            <router-view></router-view>
+        </div>
+    </body>
+    <script type=text/javascript>
+
+        var Home = {
+          template: '<div>hello to visit home</div>'
+        };
+        var Teacher = {
+          template: '<div>hello to visit teacher</div>'
+        };
+        var routes = [
+          { path: '/home', component: Home },
+          { path: '/teacher', component: Teacher }
+        ]
+
+        // 3. 创建 router 实例，然后传 `routes` 配置
+        // 你还可以传别的配置参数, 不过先这么简单着吧。
+        const router = new VueRouter({
+          routes: routes
+        })
+        router.push('/home');
+        var vm = new Vue({
+          el: '#app',
+          data: {
+            msg: 'welcome'
+          },
+          router: router
+        })
+    </script>
+</html>
